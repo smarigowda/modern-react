@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 // don't overthink this. It's JavaScript :)
 // 💰 make sure to export it for the tests.
 
-export const useCounter = initialCount => {
+export const useCounter = (initialCount = 0) => {
   const [count, setCount] = useState(initialCount)
   const incrementCount = () => setCount(count + 1)
   return { count, incrementCount}
@@ -14,7 +14,7 @@ export const useCounter = initialCount => {
 
 function Counter() {
   // 🐨 move these two lines to your function and return what you need
-  const { count, incrementCount } = useCounter(0);
+  const { count, incrementCount } = useCounter();
   return <button onClick={incrementCount}>{count}</button>
 }
 
