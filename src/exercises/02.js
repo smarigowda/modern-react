@@ -1,5 +1,5 @@
 // Counter: custom hooks
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 // 🐨 create a function here called useCounter
 // the "use" prefix is a convention, and not required.

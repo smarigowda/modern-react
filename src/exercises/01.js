@@ -10,10 +10,10 @@ function Counter() {
   // 🐨 you'll call useState here to get count and setCount
   const [counter, setCounter] = useState(0);
   // 🐨 render the count here and add an onClick handler that increments the count
-  function incrementCounter() {
+  const incrementCounter = () => {
     setCounter(counter + 1);
   }
-  return <button onClick={ incrementCounter }>{counter}</button>
+  return <button onClick={ incrementCounter }>{ counter }</button>
 }
 
 
