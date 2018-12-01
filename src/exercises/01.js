@@ -11,7 +11,10 @@ function Counter() {
   const [counter, setCounter] = useState(0);
   // 🐨 render the count here and add an onClick handler that increments the count
   const incrementCounter = () => {
-    setCounter(counter + 1);
+    setCounter(counter => {
+      console.log('current counter = ', counter);
+      return counter + 1;
+    });
   }
   return <button onClick={ incrementCounter }>{ counter }</button>
 }
