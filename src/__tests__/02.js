@@ -15,7 +15,7 @@ test('Usage works', () => {
 
 test('useCounter works', () => {
   function Test() {
-    const {count, incrementCount} = useCounter(2)
+    const [ count, incrementCount ] = useCounter(2)
     return <button onClick={incrementCount}>{count}</button>
   }
   const {container} = render(<Test />)

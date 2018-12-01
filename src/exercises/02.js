@@ -9,12 +9,12 @@ import React, { useState } from 'react'
 export const useCounter = (initialCount = 0) => {
   const [count, setCount] = useState(initialCount)
   const incrementCount = () => setCount(count + 1)
-  return { count, incrementCount}
+  return [count, incrementCount]
 }
 
 function Counter() {
   // 🐨 move these two lines to your function and return what you need
-  const { count, incrementCount } = useCounter();
+  const [count, incrementCount] = useCounter();
   return <button onClick={incrementCount}>{count}</button>
 }
 
