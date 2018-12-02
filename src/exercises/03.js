@@ -4,11 +4,17 @@ import React, { useState, useEffect } from 'react'
 
 // We moved things back to within the Counter component for the exercise.
 
+// 👇
+// this function which is a react component is run every time state is updated/ changed.
 function Counter() {
   // 🐨 1. initialize the state to the value from localStorage
   // 💰 Number(window.localStorage.getItem('count') || 0)
-  const [count, setCount] = useState(Number(window.localStorage.getItem('count') || 0))
-  const incrementCount = () => setCount(count + 1)
+  const [count, setCount] = useState(Number(window.localStorage.getItem('count') || 0));
+  // 👇
+  console.log('read from local storage...this happens every time the state is updated/ changed.');
+  // 👇
+  // state is updated, when the user clicks on the button
+  const incrementCount = () => setCount(count + 1);
   // 3. 🐨 Here's where you'll use `useEffect`.
   // The callback should set the `count` in localStorage.
   useEffect(() => {
