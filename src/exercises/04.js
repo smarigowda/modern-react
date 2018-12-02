@@ -7,7 +7,10 @@ function Counter() {
   // 🐨 1. instead of passing the value to useState as we are now,
   // pass a function which returns the value.
   const [count, setCount] = useState(
-    Number(window.localStorage.getItem('count') || 0),
+    () => { 
+      console.log('since we are passing a function to useState, it is called only once during initialization');
+      return Number(window.localStorage.getItem('count') || 0) 
+    }
   )
   const incrementCount = () => setCount(count + 1)
   useEffect(

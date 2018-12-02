@@ -20,6 +20,7 @@ function Counter() {
   useEffect(() => {
     // 👇
     console.log('useEffect is run. This happens every time the component is rendered.')
+    console.log('A component is rendered when state changes or when parent is rendered');
     window.localStorage.setItem('count', count);
   })
   return <button onClick={ incrementCount }>{ count }</button>
