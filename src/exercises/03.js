@@ -18,6 +18,8 @@ function Counter() {
   // 3. 🐨 Here's where you'll use `useEffect`.
   // The callback should set the `count` in localStorage.
   useEffect(() => {
+    // 👇
+    console.log('useEffect is run. This happens every time the component is rendered.')
     window.localStorage.setItem('count', count);
   })
   return <button onClick={ incrementCount }>{ count }</button>
