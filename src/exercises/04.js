@@ -16,6 +16,7 @@ function Counter() {
   useEffect(
     () => {
       window.localStorage.setItem('count', count)
+      console.log('useEffect is called on initial render and only when count changes...');
     },
     // 🐨 2. pass a second argument to useEffect right here
     // it should be an array of the callback's "dependencies"
@@ -25,6 +26,7 @@ function Counter() {
     // 1. After the first render
     // 2. After a render during which any element in the dependencies array changes.
     //    (If there is no array provided, then it is called after every render.)
+    [count]
   )
   return <button onClick={incrementCount}>{count}</button>
 }
