@@ -11,8 +11,9 @@ function Tilt(props) {
       glare: true,
       'max-glare': 0.5,
     }
-    VanillaTilt.init(tiltNode.current, vanillaTiltOptions)
-    return () => tiltNode.current.vanillaTilt.destroy()
+    const { current } = tiltNode;
+    VanillaTilt.init(current, vanillaTiltOptions)
+    return () => current.vanillaTilt.destroy()
   }, [])
   return (
     <div ref={tiltNode} className="tilt-root">
