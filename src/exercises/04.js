@@ -1,17 +1,17 @@
 // Counter: optimizations
 import React, {useState, useEffect} from 'react'
 
+const initializeCounter = () => {
+  console.log('since we are passing a function to useState, it is called only once during initialization');
+  return Number(window.localStorage.getItem('count') || 0) 
+};
+
 function Counter() {
   // Right now, we're reading localStorage on every render
   // But we only really need to read that value for the first render
   // 🐨 1. instead of passing the value to useState as we are now,
   // pass a function which returns the value.
-  const [count, setCount] = useState(
-    () => { 
-      console.log('since we are passing a function to useState, it is called only once during initialization');
-      return Number(window.localStorage.getItem('count') || 0) 
-    }
-  )
+  const [count, setCount] = useState(initializeCounter)
   const incrementCount = () => setCount(count + 1)
   useEffect(
     () => {
