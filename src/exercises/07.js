@@ -1,6 +1,6 @@
 // Stopwatch: useReducer (a la redux)
 // 🐨 1. swap useState with useReducer
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useReducer, useEffect, useRef} from 'react'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -29,12 +29,39 @@ const buttonStyles = {
 //   }
 // }
 
+function reducer(state, action) {
+  switch(action.type) {
+    case 'CLEAR':
+      return {
+        ...state,
+        running: false,
+        lapse: 0
+      }
+    case 'LAPSE':
+      return {
+        ...state,
+        lapse: action.now - action.startTime,
+      }
+    case 'TOGGLE_RUNNING':
+      return {
+        ...state,
+        running: !state.running,
+      }
+    default:
+      break
+  }
+}
+
+
 function Stopwatch() {
   // 🐨 3. swap these `useState` calls with a single `useReducer` call
   // 💰 `const [state, dispatch] = useReducer(reducer, initialStateObject)
   // https://reactjs.org/docs/hooks-reference.html#usereducer
-  const [lapse, setLapse] = useState(0)
-  const [running, setRunning] = useState(false)
+  // const [lapse, setLapse] = useState(0)
+  // const [running, setRunning] = useState(false)
+
+  const [ { running, lapse }, dispatch] = useReducer(reducer, { running: false, lapse: 0 });
+
   const timerRef = useRef(null)
 
   useEffect(() => () => clearInterval(timerRef.current), [])
@@ -46,18 +73,21 @@ function Stopwatch() {
       const startTime = Date.now() - lapse
       timerRef.current = setInterval(() => {
         // 🐨 4. swap this with a call to dispatch
-        setLapse(Date.now() - startTime)
+        // setLapse(Date.now() - startTime)
+        dispatch({ type: 'LAPSE', now: Date.now(), startTime });
       }, 0)
     }
     // 🐨 5. swap this with a call to dispatch
-    setRunning(!running)
+    // setRunning(!running)
+    dispatch({ type: 'TOGGLE_RUNNING' });
   }
 
   function handleClearClick() {
     clearInterval(timerRef.current)
     // 🐨 6. swap this with a call to dispatch
-    setLapse(0)
-    setRunning(false)
+    dispatch({ type: 'CLEAR' });
+    // setLapse(0)
+    // setRunning(false)
   }
 
   return (
