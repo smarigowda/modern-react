@@ -48,7 +48,7 @@ function reducer(state, action) {
         running: !state.running,
       }
     default:
-      break
+      break;
   }
 }
 
