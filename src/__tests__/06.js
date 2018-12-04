@@ -1,8 +1,8 @@
 import React from 'react'
 import chalk from 'chalk'
 import {render, fireEvent} from 'react-testing-library'
-import Usage from '../exercises-final/06'
-// import Usage from '../exercises/06'
+// import Usage from '../exercises-final/06'
+import Usage from '../exercises/06'
 
 const sleep = time => new Promise(resolve => setTimeout(resolve, time))
 
@@ -57,10 +57,10 @@ test('renders', async () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=modern%20react&e=06&em=
+http://ws.kcd.im/?ws=modern%20react&e=06&em=santosharakere@gmail.com
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
