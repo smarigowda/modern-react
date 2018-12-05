@@ -45,7 +45,7 @@ function reducer(state, action) {
     case 'TOGGLE_RUNNING':
       return {
         ...state,
-        running: !state.running,
+        running: !action.running,
       }
     default:
       break;
@@ -79,7 +79,7 @@ function Stopwatch() {
     }
     // 🐨 5. swap this with a call to dispatch
     // setRunning(!running)
-    dispatch({ type: 'TOGGLE_RUNNING' });
+    dispatch({ type: 'TOGGLE_RUNNING', running: state.running });
   }
 
   function handleClearClick() {
