@@ -43,6 +43,7 @@ function reducer(state, action) {
         lapse: action.now - action.startTime,
       }
     case 'TOGGLE_RUNNING':
+      console.log('TOGGLE_RUNNING is called...');
       return {
         ...state,
         running: !action.running,
