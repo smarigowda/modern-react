@@ -18,11 +18,12 @@ function reducer(currentState, newState) {
 // in a custom hook called useStopwatch
 // return the state, and event handlers in an object
 
-function useStopwatch() {
+function useStopwatch(initialState) {
 
   const [{ running, lapse }, setState] = useReducer(reducer, {
     running: false,
     lapse: 0,
+    ...initialState
   })
   const timerRef = useRef(null)
 
@@ -58,7 +59,7 @@ function Stopwatch() {
   // 🐨 2. call your useStopwatch custom hook and get the state and event handlers
   // for two individual stopwatches.
 
-  const stopWatchOne = useStopwatch();
+  const stopWatchOne = useStopwatch({lapse: 5000});
   const stopWatchTwo = useStopwatch();
 
   // 🐨 3. update the returned JSX to render two stopwatches and the diff between them

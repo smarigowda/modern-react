@@ -25,14 +25,14 @@ test('renders', async () => {
 
   await sleep(200)
 
-  expect(parseInt(diff.textContent, 10)).toBeGreaterThan(150)
+  expect(parseInt(diff.textContent, 10)).toBeGreaterThan(5150)
 
   fireEvent.click(timer2.startStop)
 
   await sleep(200)
   try {
     expect(parseInt(timer2.label.textContent, 10)).toBeGreaterThan(150)
-    expect(parseInt(diff.textContent, 10)).toBeLessThan(300)
+    expect(parseInt(diff.textContent, 10)).toBeLessThan(5300)
   } catch (error) {
     error.message = [
       chalk.red(
@@ -51,10 +51,10 @@ test('renders', async () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=modern%20react&e=09&em=
+http://ws.kcd.im/?ws=modern%20react&e=09&em=santosharakere@gmail.com
 */
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
   expect(submitted).toBe(true)
 })
-////////////////////////////////
+////////////////////////////////5
