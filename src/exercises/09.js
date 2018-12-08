@@ -1,5 +1,5 @@
 // Stopwatch: Custom hook
-import React, {useReducer, useEffect, useRef} from 'react'
+import React, { useReducer, useEffect, useRef } from 'react'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -11,14 +11,16 @@ const buttonStyles = {
 }
 
 function reducer(currentState, newState) {
-  return {...currentState, ...newState}
+  return { ...currentState, ...newState }
 }
 
-function Stopwatch() {
-  // 🐨 1. put all the logic for the stopwatch (including event handlers)
-  // in a custom hook called useStopwatch
-  // return the state, and event handlers in an object
-  const [{running, lapse}, setState] = useReducer(reducer, {
+// 🐨 1. put all the logic for the stopwatch (including event handlers)
+// in a custom hook called useStopwatch
+// return the state, and event handlers in an object
+
+function useStopwatch() {
+
+  const [{ running, lapse }, setState] = useReducer(reducer, {
     running: false,
     lapse: 0,
   })
@@ -32,37 +34,62 @@ function Stopwatch() {
     } else {
       const startTime = Date.now() - lapse
       timerRef.current = setInterval(() => {
-        setState({lapse: Date.now() - startTime})
+        setState({ lapse: Date.now() - startTime })
       }, 0)
     }
-    setState({running: !running})
+    setState({ running: !running })
   }
 
   function handleClearClick() {
     clearInterval(timerRef.current)
-    setState({running: false, lapse: 0})
+    setState({ running: false, lapse: 0 })
   }
+
+  return {
+    handleRunClick,
+    handleClearClick,
+    lapse,
+    running
+  }
+}
+
+function Stopwatch() {
 
   // 🐨 2. call your useStopwatch custom hook and get the state and event handlers
   // for two individual stopwatches.
+
+  const stopWatchOne = useStopwatch();
+  const stopWatchTwo = useStopwatch();
 
   // 🐨 3. update the returned JSX to render two stopwatches and the diff between them
   // 💰 if you want the tests to pass, make sure to pass a `data-testid="diff"` prop
   // to the span where you render the difference.
 
   return (
-    <div style={{textAlign: 'center'}}>
+    <div style={{ textAlign: 'center' }}>
       <StopwatchView
-        lapse={lapse}
-        running={running}
-        onRunClick={handleRunClick}
-        onClearClick={handleClearClick}
+        lapse={stopWatchOne.lapse}
+        running={stopWatchOne.running}
+        onRunClick={stopWatchOne.handleRunClick}
+        onClearClick={stopWatchOne.handleClearClick}
+      />
+      <hr />
+      <strong>Lapse Difference:</strong>
+      <span data-testid="diff">
+        {stopWatchOne.lapse - stopWatchTwo.lapse} ms
+      </span>
+      <hr />
+      <StopwatchView
+        lapse={stopWatchTwo.lapse}
+        running={stopWatchTwo.running}
+        onRunClick={stopWatchTwo.handleRunClick}
+        onClearClick={stopWatchTwo.handleClearClick}
       />
     </div>
   )
 }
 
-function StopwatchView({lapse, running, onRunClick, onClearClick}) {
+function StopwatchView({ lapse, running, onRunClick, onClearClick }) {
   return (
     <>
       <label
