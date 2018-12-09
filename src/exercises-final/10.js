@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 
 const Upper = React.memo(function Upper({children}) {
   const [count, setCount] = useState(0)
+  console.log('Final: rendering Upper...', children);
   return (
     <div>
       Uppercase version: {children.toUpperCase()}{' '}
@@ -14,6 +15,7 @@ const Upper = React.memo(function Upper({children}) {
 function App() {
   const [first, setFirstName] = useState('')
   const [last, setLastName] = useState('')
+  console.log('Final: rendering App...')
   return (
     <div>
       <label htmlFor="first-name-input">First Name</label>

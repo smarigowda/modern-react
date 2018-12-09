@@ -1,7 +1,7 @@
 import React from 'react'
 import {render, fireEvent} from 'react-testing-library'
-import Usage from '../exercises-final/10'
-// import Usage from '../exercises/10'
+// import Usage from '../exercises-final/10'
+import Usage from '../exercises/10'
 
 test('renders upper case first and last name', async () => {
   const {getByLabelText, getByText} = render(<Usage />)
@@ -18,10 +18,10 @@ test('renders upper case first and last name', async () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=modern%20react&e=10&em=
+http://ws.kcd.im/?ws=modern%20react&e=10&em=santosharakere@gmail.com
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
